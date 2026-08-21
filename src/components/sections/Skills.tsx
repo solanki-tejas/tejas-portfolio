@@ -15,7 +15,7 @@ export function Skills() {
           <Reveal
             key={group.id}
             delay={position * 0.05}
-            className="flex flex-col bg-paper p-4 sm:p-5 lg:p-6"
+            className="flex min-w-0 flex-col bg-paper p-4 sm:p-5 lg:p-6"
           >
             <div className="flex items-baseline justify-between gap-3">
               <span className="font-mono text-micro tabular-nums text-margin">
@@ -37,10 +37,12 @@ export function Skills() {
               {group.items.map((item) => (
                 <li
                   key={item}
-                  className="flex items-baseline gap-2.5 border-b border-dashed border-ink/15 py-2 text-ink-soft last:border-b-0"
+                  className="flex min-w-0 items-baseline gap-2.5 border-b border-dashed border-ink/15 py-2 text-ink-soft last:border-b-0"
                 >
                   <span aria-hidden className="size-1 shrink-0 rounded-full bg-tag-sage" />
-                  <RichText text={item} />
+                  <span className="min-w-0">
+                    <RichText text={item} />
+                  </span>
                 </li>
               ))}
             </ul>
