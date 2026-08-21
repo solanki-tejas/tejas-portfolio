@@ -1,0 +1,8 @@
+export * from './types'
+export { profile } from './profile'
+export { skills } from './skills'
+export { experience } from './experience'
+export { education } from './education'
+export { projects } from './projects'
+export { packages } from './packages'
+export { sections } from './sections'

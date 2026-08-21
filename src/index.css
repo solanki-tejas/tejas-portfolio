@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --paper: #f5efe3;
+    --paper-raised: #fbf7ee;
+    --ink: #26221f;
+    --rule: #c3cede;
+    --margin-line: #c9584c;
+    --highlight: #e29b12;
+    --line-height: 1.625rem;
+    --rail: 0px;
+    --ease-page: cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  @media (min-width: 1024px) {
+    :root {
+      --rail: 17rem;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    :root {
+      --rail: 20rem;
+    }
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans text-body antialiased;
+  }
+
+  /* Paper grain, fixed so it reads as the surface rather than scrolling wallpaper */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.6;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.075'/%3E%3C/svg%3E");
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+    font-variation-settings: 'SOFT' 26, 'WONK' 1;
+  }
+
+  ::selection {
+    background-color: #f7dfa6;
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--highlight);
+    outline-offset: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Ruled notebook paper behind a block of text. Text sits on the rules, so
+     its line-height has to match the ruling exactly. */
+  .paper-ruled {
+    line-height: var(--line-height);
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent calc(var(--line-height) - 1px),
+      rgba(195, 206, 222, 0.55) calc(var(--line-height) - 1px),
+      rgba(195, 206, 222, 0.55) var(--line-height)
+    );
+    background-position: 0 0.42rem;
+  }
+
+  /* A highlighter pulled across a word and left there */
+  .marker {
+    background-image: linear-gradient(rgba(226, 155, 18, 0.38), rgba(226, 155, 18, 0.38));
+    background-repeat: no-repeat;
+    background-position: 0 0.78em;
+    background-size: 100% 0.36em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  /* A sheet resting on the desk */
+  .paper-card {
+    @apply bg-paper-raised shadow-page;
+    border: 1px solid rgba(120, 102, 80, 0.16);
+  }
+
+  /* Hand-drawn looking divider */
+  .rule-hand {
+    height: 9px;
+    border: 0;
+    background-repeat: repeat-x;
+    background-size: 140px 9px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='9'%3E%3Cpath d='M0 5.2 C 14 2.6, 30 7.2, 46 4.6 S 79 1.9, 95 5.4 S 126 7, 140 4' fill='none' stroke='%23b6a288' stroke-width='1.15' stroke-linecap='round'/%3E%3C/svg%3E");
+    opacity: 0.7;
+  }
+
+  /* Highlighter sweep, like a marker pulled across the word */
+  .ink-link {
+    @apply relative inline text-ink no-underline;
+    background-image: linear-gradient(rgba(226, 155, 18, 0.42), rgba(226, 155, 18, 0.42));
+    background-repeat: no-repeat;
+    background-position: 0 88%;
+    background-size: 0 0.4em;
+    transition: background-size 0.35s var(--ease-page);
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  .ink-link:hover,
+  .ink-link:focus-visible {
+    background-size: 100% 0.4em;
+  }
+
+  /* Stamped, underlined label instead of a SaaS pill */
+  .stamp-button {
+    @apply inline-flex items-center gap-2 font-mono text-caption uppercase tracking-[0.12em] text-ink;
+    border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 3px;
+    transition:
+      border-color 0.25s ease,
+      background-size 0.35s var(--ease-page);
+    background-image: linear-gradient(rgba(226, 155, 18, 0.4), rgba(226, 155, 18, 0.4));
+    background-repeat: no-repeat;
+    background-position: 0 82%;
+    background-size: 0 0.78em;
+  }
+
+  .stamp-button:hover,
+  .stamp-button:focus-visible {
+    background-size: 100% 0.78em;
+    border-color: var(--highlight);
+  }
+
+  /* Scroll reveal: gentle fade with a small vertical shift, like a page settling */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.75s var(--ease-page),
+      transform 0.75s var(--ease-page);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
