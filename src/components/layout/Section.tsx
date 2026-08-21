@@ -32,7 +32,11 @@ export function Section({ id, index, title, note, children, className }: Section
           <span className="font-mono text-micro tabular-nums text-margin">
             {String(index).padStart(2, '0')}
           </span>
-          <h2 id={`${id}-title`} className="text-display font-semibold">
+          <h2
+            id={`${id}-title`}
+            className="text-display font-semibold"
+            {...(id === 'work' || id === 'built' ? { 'data-tour': id } : {})}
+          >
             {title}
           </h2>
           {note ? (

@@ -1,5 +1,6 @@
 import { Reveal } from '@/components/layout/Reveal'
 import { Section } from '@/components/layout/Section'
+import { RichText } from '@/components/ui/rich-text'
 import { useSite } from '@/context/site-context'
 
 export function Skills() {
@@ -25,7 +26,10 @@ export function Skills() {
               </span>
             </div>
 
-            <h3 className="mt-2.5 font-display text-subheading font-semibold text-balance text-ink">
+            <h3
+              className="mt-2.5 font-display text-subheading font-semibold text-balance text-ink"
+              {...(position === 0 ? { 'data-tour': 'key-skills' } : {})}
+            >
               {group.label}
             </h3>
 
@@ -36,7 +40,7 @@ export function Skills() {
                   className="flex items-baseline gap-2.5 border-b border-dashed border-ink/15 py-2 text-ink-soft last:border-b-0"
                 >
                   <span aria-hidden className="size-1 shrink-0 rounded-full bg-tag-sage" />
-                  {item}
+                  <RichText text={item} />
                 </li>
               ))}
             </ul>

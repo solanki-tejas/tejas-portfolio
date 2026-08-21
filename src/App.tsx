@@ -16,6 +16,7 @@ import { Work } from '@/components/sections/Work'
 import { Button } from '@/components/ui/button'
 import { SiteProvider } from '@/context/SiteProvider'
 import { SoundProvider } from '@/context/SoundProvider'
+import { TourProvider } from '@/context/TourProvider'
 import { useSite } from '@/context/site-context'
 import { scrollToSection } from '@/lib/scroll-to-section'
 import { useActiveSection } from '@/lib/use-active-section'
@@ -64,9 +65,11 @@ export default function App() {
   return (
     <SoundProvider>
       <SiteProvider>
-        <Routes>
-          <Route path="/" element={<Notebook />} />
-        </Routes>
+        <TourProvider>
+          <Routes>
+            <Route path="/" element={<Notebook />} />
+          </Routes>
+        </TourProvider>
       </SiteProvider>
     </SoundProvider>
   )

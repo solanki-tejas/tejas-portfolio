@@ -31,6 +31,17 @@
     scroll-behavior: smooth;
   }
 
+  /* Joyride tweens scroll itself; native smooth stacking makes steps lag.
+     Extra bottom space lets the last stop (resume / LinkedIn) actually reach
+     the spotlight instead of sitting on the page edge. */
+  html.tour-running {
+    scroll-behavior: auto;
+  }
+
+  html.tour-running main {
+    padding-bottom: 50vh;
+  }
+
   body {
     @apply bg-paper text-ink font-sans text-body antialiased;
   }
@@ -175,5 +186,193 @@
       opacity: 1;
       transform: none;
     }
+  }
+
+  /* react-joyride tooltip — paper card with a margin rule */
+  .notebook-tour {
+    position: relative;
+    box-sizing: border-box;
+    width: 20rem;
+    max-width: calc(100vw - 2rem);
+    padding: 1.1rem 1.15rem 0.95rem 1.2rem;
+    background-color: #fbf7ee;
+    color: var(--ink);
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    border: 1px solid rgba(120, 102, 80, 0.18);
+    border-left: 2px solid var(--margin-line);
+    box-shadow: 0 1px 2px rgba(80, 64, 44, 0.06), 0 18px 36px -20px rgba(80, 64, 44, 0.5);
+  }
+
+  .notebook-tour-skip {
+    position: absolute;
+    top: 1rem;
+    right: 0.95rem;
+    font-family: 'DM Mono', ui-monospace, monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #8d8377;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .notebook-tour-skip:hover {
+    color: var(--margin-line);
+  }
+
+  .notebook-tour-title {
+    margin: 0;
+    padding-right: 3rem;
+    font-family: Fraunces, Georgia, serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  .notebook-tour-body {
+    margin-top: 0.4rem;
+    color: #544c44;
+  }
+
+  .notebook-tour-role {
+    display: inline;
+    margin: 0;
+    font-family: Fraunces, Georgia, serif;
+    font-size: 1.0625rem;
+    font-weight: 500;
+    color: var(--ink);
+    background-image: linear-gradient(rgba(226, 155, 18, 0.38), rgba(226, 155, 18, 0.38));
+    background-repeat: no-repeat;
+    background-position: 0 0.78em;
+    background-size: 100% 0.36em;
+  }
+
+  .notebook-tour-stat {
+    margin: 0;
+    font-family: Fraunces, Georgia, serif;
+    font-size: 1.375rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: var(--ink);
+  }
+
+  .notebook-tour-note {
+    margin: 0.35rem 0 0;
+    color: #8d8377;
+  }
+
+  .notebook-tour-list {
+    margin: 0.15rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .notebook-tour-list li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.45rem 0;
+    border-bottom: 1px dashed rgba(38, 34, 31, 0.16);
+    color: var(--ink);
+  }
+
+  .notebook-tour-list li:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .notebook-tour-meta {
+    font-family: 'DM Mono', ui-monospace, monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8d8377;
+  }
+
+  .notebook-tour-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+    margin-top: 0.45rem;
+  }
+
+  .notebook-tour-links a {
+    font-family: 'DM Mono', ui-monospace, monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 3px;
+    background-image: linear-gradient(rgba(226, 155, 18, 0.4), rgba(226, 155, 18, 0.4));
+    background-repeat: no-repeat;
+    background-position: 0 82%;
+    background-size: 0 0.78em;
+    transition: background-size 0.35s var(--ease-page);
+  }
+
+  .notebook-tour-links a:hover {
+    background-size: 100% 0.78em;
+  }
+
+  .notebook-tour-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-top: 0.95rem;
+  }
+
+  .notebook-tour-progress {
+    font-family: 'DM Mono', ui-monospace, monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #8d8377;
+  }
+
+  .notebook-tour-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+  }
+
+  .notebook-tour-back,
+  .notebook-tour-next {
+    font-family: 'DM Mono', ui-monospace, monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: none;
+    border: 0;
+    padding: 0 0 3px;
+    cursor: pointer;
+  }
+
+  .notebook-tour-back {
+    color: #8d8377;
+  }
+
+  .notebook-tour-next {
+    color: var(--ink);
+    border-bottom: 1.5px solid var(--ink);
+    background-image: linear-gradient(rgba(226, 155, 18, 0.4), rgba(226, 155, 18, 0.4));
+    background-repeat: no-repeat;
+    background-position: 0 82%;
+    background-size: 0 0.78em;
+    transition: background-size 0.35s var(--ease-page);
+  }
+
+  .notebook-tour-next:hover {
+    background-size: 100% 0.78em;
   }
 }

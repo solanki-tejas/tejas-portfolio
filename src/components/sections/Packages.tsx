@@ -49,11 +49,7 @@ export function Packages() {
 
   return (
     <Section id="packages" index={index + 1} title={meta.title} note={meta.note}>
-      <p className="max-w-[56ch] text-ink-soft">
-        Two React components I put on npm and still use in my own work.
-      </p>
-
-      <div className="mt-8 grid gap-6 xl:grid-cols-2">
+      <div className="grid gap-6 xl:grid-cols-2">
         {packages.map((pkg, position) => (
           <Reveal
             key={pkg.id}

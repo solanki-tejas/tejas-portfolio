@@ -75,19 +75,20 @@ export function Contact() {
         </dl>
       </Reveal>
 
-      <Reveal delay={0.14}>
-        <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4">
-          <Button asChild>
-            <a href={profile.resumeUrl} download={profile.resumeFileName}>
-              <Download aria-hidden />
-              Download resume
-            </a>
-          </Button>
-          <span aria-hidden className="-rotate-2 font-hand text-xl text-margin">
-            thanks for reading
-          </span>
-        </div>
-      </Reveal>
+      <div
+        data-tour="connect"
+        className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4"
+      >
+        <Button asChild>
+          <a href={profile.resumeUrl} download={profile.resumeFileName}>
+            <Download aria-hidden />
+            Download resume
+          </a>
+        </Button>
+        <span aria-hidden className="-rotate-2 font-hand text-xl text-margin">
+          thanks for reading
+        </span>
+      </div>
     </Section>
   )
 }

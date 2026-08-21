@@ -3,6 +3,7 @@ import { useSite } from '@/context/site-context'
 import { scrollToSection } from '@/lib/scroll-to-section'
 import { cn } from '@/lib/utils'
 import { SoundToggle } from './SoundToggle'
+import { TourToggle } from './TourToggle'
 import type { SectionId } from '@/data'
 
 /** The notebook's index column: name, numbered tabs, and the two things worth clicking. */
@@ -28,7 +29,7 @@ export function SideRail({ active }: { active: SectionId }) {
         <p className="mt-2.5 font-mono text-micro uppercase text-ink-faint">{profile.role}</p>
       </div>
 
-      <nav aria-label="Sections" className="my-auto shrink-0">
+      <nav aria-label="Sections" data-tour="nav" className="my-auto shrink-0">
         <ul className="space-y-0.5">
           {sections.map((section, index) => {
             const isActive = active === section.id
@@ -75,6 +76,7 @@ export function SideRail({ active }: { active: SectionId }) {
 
       {/* Both children are inline-flex, so this has to be a flex column to space them */}
       <div className="flex shrink-0 flex-col items-start gap-4">
+        <TourToggle />
         <SoundToggle />
         <a href={profile.resumeUrl} download={profile.resumeFileName} className="stamp-button">
           <Download aria-hidden className="size-3.5" />

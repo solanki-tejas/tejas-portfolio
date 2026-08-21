@@ -38,21 +38,23 @@ export function Hero() {
             </p>
           </Reveal>
 
-          <Reveal delay={0.06}>
-            <h1
-              id="cover-title"
-              className="mt-5 text-hero font-semibold"
-              style={{ fontVariationSettings: "'SOFT' 40, 'WONK' 1" }}
-            >
-              Tejas <span className="italic text-ink-soft">Solanki</span>
-            </h1>
-          </Reveal>
+          <div data-tour="intro">
+            <Reveal delay={0.06}>
+              <h1
+                id="cover-title"
+                className="mt-5 text-hero font-semibold"
+                style={{ fontVariationSettings: "'SOFT' 40, 'WONK' 1" }}
+              >
+                Tejas <span className="italic text-ink-soft">Solanki</span>
+              </h1>
+            </Reveal>
 
-          <Reveal delay={0.12}>
-            <p className="mt-4 font-display text-display font-medium">
-              <span className="marker">{profile.role}</span>
-            </p>
-          </Reveal>
+            <Reveal delay={0.12}>
+              <p className="mt-4 font-display text-display font-medium">
+                <span className="marker">{profile.role}</span>
+              </p>
+            </Reveal>
+          </div>
         </div>
 
         <Reveal delay={0.18} className="lg:col-span-5">
@@ -65,7 +67,7 @@ export function Hero() {
       <Reveal delay={0.24}>
         <dl className="mt-11 grid grid-cols-2 gap-x-6 gap-y-6 border-t border-ink/12 pt-7 xl:grid-cols-4">
           {facts.map((fact) => (
-            <div key={fact.label}>
+            <div key={fact.label} {...(fact.label === 'Experience' ? { 'data-tour': 'experience' } : {})}>
               <dt className="font-mono text-micro uppercase text-ink-faint">{fact.label}</dt>
               <dd className="mt-1.5 font-display text-subheading font-medium text-ink">
                 {fact.value}

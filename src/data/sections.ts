@@ -9,7 +9,7 @@ export const sections: SectionMeta[] = [
   },
   {
     id: 'notes',
-    tab: 'Toolkit',
+    tab: 'Skills',
     title: 'What I work with',
     note: 'margin notes',
   },
@@ -35,12 +35,12 @@ export const sections: SectionMeta[] = [
     id: 'school',
     tab: 'School',
     title: 'Where I studied',
-    note: 'one entry',
+    note: 'three entries',
   },
   {
     id: 'hello',
-    tab: 'Hello',
-    title: 'Say hello',
+    tab: 'Contact',
+    title: 'How to reach me',
     note: 'last page',
   },
 ]

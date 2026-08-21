@@ -5,7 +5,7 @@ export const profile: Profile = {
   role: 'Full Stack Developer',
   location: 'Ahmedabad, GJ, India',
   intro:
-    'I build web apps end to end — the screens people use and the services behind them. Four years in, mostly **React**, **Next.js**, **Node**, and **NestJS**, across logistics, insurance, enterprise tools, and iGaming. The parts I enjoy most are **real-time features**, **outside integrations**, and making slow things fast.',
+    'I build web apps end to end — the screens people use and the services behind them. Mostly **React**, **Next.js**, **Node**, and **NestJS**, across logistics, insurance, enterprise tools, and iGaming.',
   languages: ['English', 'Hindi', 'Gujarati'],
   email: 'tejas.solankii.dev@gmail.com',
   phone: '+91-9106456997',

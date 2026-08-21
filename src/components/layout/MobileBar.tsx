@@ -3,6 +3,7 @@ import { useSite } from '@/context/site-context'
 import { scrollToSection } from '@/lib/scroll-to-section'
 import { cn } from '@/lib/utils'
 import { SoundToggle } from './SoundToggle'
+import { TourToggle } from './TourToggle'
 import type { SectionId } from '@/data'
 
 /** The small-screen version of the index column: a name row and a strip of tabs. */
@@ -31,10 +32,13 @@ export function MobileBar({ active }: { active: SectionId }) {
         >
           Tejas Solanki
         </button>
-        <SoundToggle className="shrink-0" />
+        <div className="flex shrink-0 items-center gap-3">
+          <TourToggle compact />
+          <SoundToggle className="shrink-0" />
+        </div>
       </div>
 
-      <nav aria-label="Sections">
+      <nav aria-label="Sections" data-tour="nav">
         <ul
           ref={stripRef}
           className="flex gap-3.5 overflow-x-auto px-5 pb-2 pt-2.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
