@@ -4,19 +4,17 @@ import { Button } from '@/components/ui/button'
 import { RichText } from '@/components/ui/rich-text'
 import { useSite } from '@/context/site-context'
 import { scrollToSection } from '@/lib/scroll-to-section'
+import { formatExperience, totalExperienceMonths } from '@/lib/total-experience'
 
 export function Hero() {
   const { profile, experience } = useSite()
 
   const current = experience.find((job) => job.current)
-  const firstYear = experience
-    .map((job) => Number(job.start.split('/')[1]))
-    .filter((year) => Number.isFinite(year))
-    .sort((a, b) => a - b)[0]
+  const tenure = formatExperience(totalExperienceMonths(experience))
 
   const facts = [
     current ? { label: 'Now', value: `${current.title}, ${current.company}` } : null,
-    firstYear ? { label: 'Coding since', value: String(firstYear) } : null,
+    { label: 'Experience', value: tenure },
     { label: 'Based in', value: profile.location },
     { label: 'Speaks', value: profile.languages.join(', ') },
   ].filter((fact): fact is { label: string; value: string } => fact !== null)
